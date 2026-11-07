@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox prefHeight="550.0" prefWidth="900.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.duoc.viviendas.controller.ViviendaController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <VBox prefWidth="350.0" spacing="15.0">
+        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Registro de viviendas" />
+
+        <GridPane hgap="10.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints minWidth="100.0" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label text="Tipo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <ComboBox fx:id="cmbTipo" onAction="#alCambiarTipo" prefWidth="200.0" promptText="Seleccione..." GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Código:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCodigo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Superficie (m²):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="txtSuperficie" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Habitaciones:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="txtHabitaciones" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        </GridPane>
+
+        <TitledPane collapsible="false" text="Datos del departamento">
+            <VBox spacing="10.0">
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="Piso:" />
+                    <TextField fx:id="txtPiso" disable="true" HBox.hgrow="ALWAYS" />
+                </HBox>
+                <CheckBox fx:id="chkGastoComun" disable="true" text="Gasto común al día" />
+                <CheckBox fx:id="chkEstacionamiento" disable="true" text="Estacionamiento asignado" />
+            </VBox>
+        </TitledPane>
+
+        <TitledPane collapsible="false" text="Datos de la casa">
+            <VBox spacing="10.0">
+                <CheckBox fx:id="chkPatio" disable="true" text="Cuenta con patio" />
+            </VBox>
+        </TitledPane>
+
+        <HBox alignment="CENTER_RIGHT">
+            <Button mnemonicParsing="false" onAction="#registrarVivienda" prefWidth="100.0" text="Registrar" />
+        </HBox>
+
+        <Label fx:id="lblMensaje" wrapText="true" />
+    </VBox>
+
+    <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+        <TableView fx:id="tablaViviendas" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colTipo" prefWidth="110.0" text="Tipo" />
+                <TableColumn fx:id="colCodigo" prefWidth="110.0" text="Código" />
+                <TableColumn fx:id="colSuperficie" prefWidth="110.0" text="Superficie (m²)" />
+                <TableColumn fx:id="colHabitaciones" prefWidth="100.0" text="Habitaciones" />
+                <TableColumn fx:id="colCosto" prefWidth="110.0" text="Costo arriendo" />
+            </columns>
+        </TableView>
+        <Button mnemonicParsing="false" onAction="#eliminarVivienda" prefWidth="100.0" text="Eliminar" />
+    </VBox>
+</HBox>
