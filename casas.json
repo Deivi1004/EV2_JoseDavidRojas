@@ -10,5 +10,11 @@
     "codigo": "PROP-C02",
     "superficie": 90.0,
     "habitaciones": 3
+  },
+  {
+    "tienePatio": false,
+    "codigo": "CASA-07",
+    "superficie": 80.0,
+    "habitaciones": 3
   }
 ]

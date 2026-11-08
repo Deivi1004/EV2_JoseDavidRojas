@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.List;
 
 public class ViviendaController {
 
@@ -120,7 +121,7 @@ public class ViviendaController {
                     depto.asignarEstacionamiento();
                 }
 
-                var deptos = repositorio.cargarDepartamentos();
+                List<Departamento> deptos = repositorio.cargarDepartamentos();
                 deptos.add(depto);
                 repositorio.guardarDepartamentos(deptos);
 
@@ -130,7 +131,7 @@ public class ViviendaController {
             } else if (tipo.equals("Casa")) {
                 Casa casa = new Casa(codigo, superficie, habitaciones, chkPatio.isSelected());
 
-                var casas = repositorio.cargarCasas();
+                List<Casa> casas = repositorio.cargarCasas();
                 casas.add(casa);
                 repositorio.guardarCasas(casas);
 
@@ -140,7 +141,7 @@ public class ViviendaController {
 
             limpiarFormulario();
 
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | IllegalStateException e) {
             mostrarError(e.getMessage());
         }
     }
@@ -154,17 +155,18 @@ public class ViviendaController {
             return;
         }
 
-        listaViviendas.remove(seleccionada);
-
         if (seleccionada instanceof Departamento) {
-            var deptos = repositorio.cargarDepartamentos();
+            List<Departamento> deptos = repositorio.cargarDepartamentos();
             deptos.removeIf(d -> d.getCodigo().equals(seleccionada.getCodigo()));
             repositorio.guardarDepartamentos(deptos);
         } else if (seleccionada instanceof Casa) {
-            var casas = repositorio.cargarCasas();
+            List<Casa> casas = repositorio.cargarCasas();
             casas.removeIf(c -> c.getCodigo().equals(seleccionada.getCodigo()));
             repositorio.guardarCasas(casas);
         }
+
+        listaViviendas.remove(seleccionada);
+
 
         mostrarExito("Vivienda eliminada correctamente.");
     }
