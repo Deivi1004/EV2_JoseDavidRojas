@@ -1,5 +1,4 @@
 package cl.duoc.viviendas.controller;
-
 import cl.duoc.viviendas.model.Casa;
 import cl.duoc.viviendas.model.Departamento;
 import cl.duoc.viviendas.model.Vivienda;
